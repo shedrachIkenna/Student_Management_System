@@ -36,9 +36,37 @@ def read_student():
     if not found:
         print("Student not found\n")
 
+def update_student():
+    id = int(input("Enter student ID to update credentials: "))
+
+    for student in students_db:
+        if student.student_id == id: 
+            print("/nCurrent credentials: ")
+            student.display_info()
+            print("what would you like to change")
+            print("1. Name")
+            print("2. GPA")
+            choice = int(input("Select 1/2"))
+            if choice == 1:
+                new_name = input("Enter new name: ")
+                student.name = new_name
+            elif choice == 2:
+                new_gpa = input("Enter new GPA: ")
+                student.gpa = new_gpa
+            else:
+                print("Invalid option!")
+                return
+            
+            print("/nStudent info successfully updated!")
+            student.display_info()
+            return 
+    
+    print("Student not found")
+
 
 create_student()
 read_student()
+update_student()
 
 print("All the students in the system")
 for student in students_db:
