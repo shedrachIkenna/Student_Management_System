@@ -29,7 +29,7 @@ def read_student():
     found = False 
     for student in students_db:
         if student.student_id == id:
-            print("\nStudebt Found")
+            print("\nStudent Found")
             student.display_info()
             found = True 
             break
@@ -43,10 +43,10 @@ def update_student():
         if student.student_id == id: 
             print("/nCurrent credentials: ")
             student.display_info()
-            print("what would you like to change")
+            print("what would you like to change: ")
             print("1. Name")
             print("2. GPA")
-            choice = int(input("Select 1/2"))
+            choice = int(input("Select 1/2: "))
             if choice == 1:
                 new_name = input("Enter new name: ")
                 student.name = new_name
@@ -63,10 +63,24 @@ def update_student():
     
     print("Student not found")
 
+def delete_student():
+    id = int(input("Enter the student ID you want to delete: "))
+    for student in students_db:
+        if student.student_id == id:
+            confirm = input(f"Are you sure you want to delete {student.name} y/n?:").lower()
+            if confirm == "y":
+                students_db.remove(student)
+                print(f"{student.name} deleted successfully!")
+            else:
+                print("Deletion cancelled")
+            return 
+    
+    print("Student not found!")
 
 create_student()
 read_student()
 update_student()
+delete_student()
 
 print("All the students in the system")
 for student in students_db:
