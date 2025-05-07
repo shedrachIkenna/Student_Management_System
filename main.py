@@ -25,7 +25,7 @@ def create_student():
     print(f"{name} has been successfully added to the system!")
 
 def read_student():
-    id = int(input("Enter student ID"))
+    id = int(input("Enter student ID to view student info: "))
     found = False 
     for student in students_db:
         if student.student_id == id:
@@ -77,11 +77,39 @@ def delete_student():
     
     print("Student not found!")
 
-create_student()
-read_student()
-update_student()
-delete_student()
+def list_all_students():
+    if not students_db:
+        print(f"\nStudent not found")
+    else: 
+        print(f"\nAll Students")
+        for student in students_db:
+            print(student)
 
-print("All the students in the system")
-for student in students_db:
-    print(student)
+def main():
+    while True:
+        print("Student Management System")
+        print("1. Create Student")
+        print("2. View Student")
+        print("3. Update Student")
+        print("4. Delete Student")
+        print("5. List All Students")
+        print("6. Exit")
+
+        choice = input("Select and option (1-6): ")
+        if choice == "1":
+            create_student()
+        elif choice == "2":
+            read_student()
+        elif choice == "3":
+            update_student()
+        elif choice == "4":
+            delete_student()
+        elif choice == "5": 
+            list_all_students()
+        elif choice == "6":
+            print("goodbye")
+            break 
+        else:
+            print("Invalid option! Please try again")
+
+main()
